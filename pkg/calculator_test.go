@@ -61,4 +61,59 @@ func TestSubtract(t *testing.T) {
 		calculator := NewCalculator()
 		assert.Equal(t, -4.0, calculator.Subtract(4))
 	})
+
+	t.Run("should result as 0.0 when 5 is subtracted from 5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(5)
+		assert.Equal(t, 0.0, calculator.Subtract(5))
+	})
+
+	t.Run("should result as 10.0 when -5 is subtracted from 5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(5)
+		assert.Equal(t, 10.0, calculator.Subtract(-5))
+	})
+
+	t.Run("should result as 0.0 when -5 is subtracted from -5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-5)
+		assert.Equal(t, 0.0, calculator.Subtract(-5))
+	})
+
+	t.Run("should result as -10.0 when 5 is subtracted from -5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-5)
+		assert.Equal(t, -10.0, calculator.Subtract(5))
+	})
+}
+
+func TestMultiply(t *testing.T) {
+	t.Run("should result as 0.0  when 4 is multiplied with 0", func(t *testing.T) {
+		calculator := NewCalculator()
+		assert.Equal(t, 0.0, calculator.Multiply(4))
+	})
+
+	t.Run("should result as 4.0  when 4 is multiplied with 1", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(1)
+		assert.Equal(t, 4.0, calculator.Multiply(4))
+	})
+
+	t.Run("should result as -2.0  when 2 is multiplied with -1", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-1)
+		assert.Equal(t, -2.0, calculator.Multiply(2))
+	})
+
+	t.Run("should result as 10.0  when 4 is multiplied with 2.5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(2.5)
+		assert.Equal(t, 10.0, calculator.Multiply(4))
+	})
+
+	t.Run("should result as -20.0  when 8 is multiplied with -2.5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-2.5)
+		assert.Equal(t, -20.0, calculator.Multiply(8))
+	})
 }
