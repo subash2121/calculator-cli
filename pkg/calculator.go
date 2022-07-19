@@ -8,11 +8,11 @@ func NewCalculator() Calculator {
 	return Calculator{0}
 }
 
-func (calculator *Calculator) Add(operand float64) float64 {
-	calculator.value += operand
+func (calculator Calculator) GetValue() float64 {
 	return calculator.value
 }
 
-func (calculator Calculator) GetValue() float64 {
-	return calculator.value
+func (calculator *Calculator) Add(operand float64) float64 {
+	calculator.value += operand
+	return calculator.GetValue()
 }

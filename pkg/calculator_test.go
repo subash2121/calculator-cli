@@ -15,19 +15,6 @@ func TestNewCalculator(t *testing.T) {
 	})
 }
 
-func TestAdd(t *testing.T) {
-	t.Run("should result as 4.0 when 4 is added with 0", func(t *testing.T) {
-		calculator := NewCalculator()
-		assert.Equal(t, 4.0, calculator.Add(4))
-	})
-
-	t.Run("should result as 8.0 when 4 is added with 4", func(t *testing.T) {
-		calculator := NewCalculator()
-		calculator.Add(4)
-		assert.Equal(t, 8.0, calculator.Add(4))
-	})
-}
-
 func TestGetValue(t *testing.T) {
 	t.Run("should result the value of the calculator", func(t *testing.T) {
 		assert.IsType(t, 0.0, NewCalculator().GetValue())
@@ -41,5 +28,30 @@ func TestGetValue(t *testing.T) {
 		calculator := NewCalculator()
 		calculator.Add(5.4)
 		assert.Equal(t, 5.4, calculator.GetValue())
+	})
+}
+
+func TestAdd(t *testing.T) {
+	t.Run("should result as 4.0 when 4 is added with 0", func(t *testing.T) {
+		calculator := NewCalculator()
+		assert.Equal(t, 4.0, calculator.Add(4))
+	})
+
+	t.Run("should result as 8.0 when 4 is added with 4", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(4)
+		assert.Equal(t, 8.0, calculator.Add(4))
+	})
+
+	t.Run("should result as 0.0 when -4 is added with 4", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(4)
+		assert.Equal(t, 0.0, calculator.Add(-4))
+	})
+
+	t.Run("should result as -8.0 when -4 is added with -4", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-4)
+		assert.Equal(t, -8.0, calculator.Add(-4))
 	})
 }
