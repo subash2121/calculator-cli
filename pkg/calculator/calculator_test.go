@@ -1,4 +1,4 @@
-package main
+package calculator
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -124,5 +124,29 @@ func TestDivide(t *testing.T) {
 		assert.Panics(t, func() {
 			calculator.Divide(0)
 		})
+	})
+
+	t.Run("should result as 4.0  when 8 is divided by 2", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(8)
+		assert.Equal(t, 4.0, calculator.Divide(2))
+	})
+
+	t.Run("should result as 0.25  when 2 is divided by 8", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(2)
+		assert.Equal(t, 0.25, calculator.Divide(8))
+	})
+
+	t.Run("should result as -2.0  when -2 is divided by 1", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-2)
+		assert.Equal(t, -2.0, calculator.Divide(1))
+	})
+
+	t.Run("should result as 2.0  when -2 is divided by -1", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(-2)
+		assert.Equal(t, 2.0, calculator.Divide(-1))
 	})
 }

@@ -1,4 +1,4 @@
-package main
+package calculator
 
 type Calculator struct {
 	value float64
@@ -30,5 +30,6 @@ func (calculator *Calculator) Divide(operand float64) float64 {
 	if operand == 0 {
 		panic("Zero division error")
 	}
-	return 0
+	calculator.value /= operand
+	return calculator.GetValue()
 }
