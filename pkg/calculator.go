@@ -9,5 +9,10 @@ func NewCalculator() Calculator {
 }
 
 func (calculator *Calculator) Add(operand float64) float64 {
-	return 4.0
+	calculator.value += operand
+	return calculator.value
+}
+
+func (calculator Calculator) GetValue() float64 {
+	return calculator.value
 }
