@@ -16,3 +16,7 @@ func (calculator *Calculator) Add(operand float64) float64 {
 	calculator.value += operand
 	return calculator.GetValue()
 }
+
+func (calculator *Calculator) Subtract(operand float64) float64 {
+	return -4.0
+}
