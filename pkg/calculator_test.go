@@ -117,3 +117,12 @@ func TestMultiply(t *testing.T) {
 		assert.Equal(t, -20.0, calculator.Multiply(8))
 	})
 }
+
+func TestDivide(t *testing.T) {
+	t.Run("should panic if divide by 0", func(t *testing.T) {
+		calculator := NewCalculator()
+		assert.Panics(t, func() {
+			calculator.Divide(0)
+		})
+	})
+}

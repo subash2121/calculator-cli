@@ -25,3 +25,10 @@ func (calculator *Calculator) Multiply(operand float64) float64 {
 	calculator.value *= operand
 	return calculator.GetValue()
 }
+
+func (calculator *Calculator) Divide(operand float64) float64 {
+	if operand == 0 {
+		panic("Zero division error")
+	}
+	return 0
+}
