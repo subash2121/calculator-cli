@@ -1,19 +1,25 @@
 package parser
 
 import (
+	"calculator-cli/pkg/constants"
 	"strconv"
 	"strings"
 )
 
 type Expression struct {
-	operator string
-	operand  float64
+	Operator constants.Operations
+	Operand  float64
 }
 
 func Parse(inputString string) Expression {
 	inputValue := Expression{}
-	inputValue.operator = strings.Split(inputString, " ")[0]
-	inputValue.operand = ConvertToFloat(strings.Split(inputString, " ")[1])
+	stringList := strings.Split(inputString, " ")
+	inputValue.Operator = constants.Operations(stringList[0])
+	if len(stringList) < 2 {
+		inputValue.Operand = 0.0
+		return inputValue
+	}
+	inputValue.Operand = ConvertToFloat(strings.Split(inputString, " ")[1])
 	return inputValue
 }
 

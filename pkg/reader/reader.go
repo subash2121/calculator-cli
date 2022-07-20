@@ -1,9 +1,14 @@
 package reader
 
-import "fmt"
+import (
+	"bufio"
+	"io"
+)
 
-func Reader() string {
-	var input string
-	fmt.Scanf("%s", input)
-	return input
+func Reader(r io.Reader) string {
+	scanner := bufio.NewScanner(r)
+	if scanner.Scan() {
+		return scanner.Text()
+	}
+	return ""
 }

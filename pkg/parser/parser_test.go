@@ -12,14 +12,14 @@ func TestParser(t *testing.T) {
 
 	t.Run("should parse the read value as a operand and operator", func(t *testing.T) {
 		parser := Parse("add 5")
-		assert.IsType(t, "", parser.operator)
-		assert.IsType(t, 5.0, parser.operand)
+		assert.IsType(t, "", parser.Operator)
+		assert.IsType(t, 5.0, parser.Operand)
 	})
 
 	t.Run("should parse the 'subtract 5' as operator-subtract and operand-5.0", func(t *testing.T) {
 		parser := Parse("subtract 5")
-		assert.Equal(t, "subtract", parser.operator)
-		assert.Equal(t, 5.0, parser.operand)
+		assert.Equal(t, "subtract", parser.Operator)
+		assert.Equal(t, 5.0, parser.Operand)
 	})
 
 	t.Run("should panic if wrong operand is provided except a number", func(t *testing.T) {

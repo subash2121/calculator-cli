@@ -22,9 +22,6 @@ Execute the below command
 
     $ go test ./...
 
-_For detailed results with necessary information:_
-`$ make test`
-
 ## Build
 
 Execute the below command to build the package
