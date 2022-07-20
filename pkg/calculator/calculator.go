@@ -6,15 +6,19 @@ type Calculator struct {
 	value float64
 }
 
-type ArithmeticFunctions interface {
+type ArithmeticInterface interface {
 	Add(value float64) float64
 	Subtract(value float64) float64
 	Multiply(value float64) float64
 	Divide(value float64) float64
 }
 
-type CalculatorFunctions interface {
-	ArithmeticFunctions
+type CalculatorInterface interface {
+	ArithmeticInterface
+	UtilityInterface
+}
+
+type UtilityInterface interface {
 	Cancel(float64) float64
 	Exit(float64) float64
 }
@@ -23,13 +27,9 @@ func NewCalculator() *Calculator {
 	return &Calculator{}
 }
 
-func (calculator Calculator) GetValue() float64 {
-	return calculator.value
-}
-
 func (calculator *Calculator) Add(operand float64) float64 {
 	calculator.value += operand
-	return calculator.GetValue()
+	return calculator.value
 }
 
 func (calculator *Calculator) Subtract(operand float64) float64 {
@@ -38,7 +38,7 @@ func (calculator *Calculator) Subtract(operand float64) float64 {
 
 func (calculator *Calculator) Multiply(operand float64) float64 {
 	calculator.value *= operand
-	return calculator.GetValue()
+	return calculator.value
 }
 
 func (calculator *Calculator) Divide(operand float64) float64 {
@@ -46,15 +46,15 @@ func (calculator *Calculator) Divide(operand float64) float64 {
 		panic("Zero division error")
 	}
 	calculator.value /= operand
-	return calculator.GetValue()
+	return calculator.value
 }
 
-func (calculator *Calculator) Cancel(dummy float64) float64 {
+func (calculator *Calculator) Cancel(float64) float64 {
 	calculator.value = 0
-	return calculator.GetValue()
+	return calculator.value
 }
 
-func (calculator *Calculator) Exit(errorCode float64) float64 {
-	os.Exit(3)
+func (calculator *Calculator) Exit(float64) float64 {
+	defer func() { os.Exit(3) }()
 	return 0
 }

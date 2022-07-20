@@ -16,7 +16,6 @@ func Parse(inputString string) Expression {
 	stringList := strings.Split(inputString, " ")
 	inputValue.Operator = constants.Operations(stringList[0])
 	if len(stringList) < 2 {
-		inputValue.Operand = 0.0
 		return inputValue
 	}
 	inputValue.Operand = ConvertToFloat(strings.Split(inputString, " ")[1])
