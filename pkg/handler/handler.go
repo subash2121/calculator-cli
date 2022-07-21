@@ -4,12 +4,15 @@ import (
 	"calculator-cli/pkg/calculator"
 	"calculator-cli/pkg/constants"
 	"calculator-cli/pkg/parser"
-	"fmt"
+	"calculator-cli/pkg/renderer"
+	"os"
 )
 
 type operationsMap map[constants.Operations]handleFunc
 
 type handleFunc func(float64, *calculator.Calculator) float64
+
+var operations = operationsMap{}
 
 func (operations operationsMap) AddHandler(operator constants.Operations, function handleFunc) {
 	if _, exists := operations[operator]; exists {
@@ -21,6 +24,9 @@ func (operations operationsMap) AddHandler(operator constants.Operations, functi
 func (operations operationsMap) ExecuteQuery(expression parser.Expression, calculator *calculator.Calculator) float64 {
 	if evaluator, exists := operations[expression.Operator]; exists {
 		return evaluator(expression.Operand, calculator)
+	} else {
+		renderer.RenderError(os.Stdout, "Operation not supported")
+		renderer.RenderNewLine(os.Stdout)
 	}
 	return 0.0
 }
@@ -34,10 +40,12 @@ func RegisterHandler(operations *operationsMap) {
 	operations.AddHandler("cancel", HandleCancelFunction)
 }
 
-func Handler(expression parser.Expression, calculator *calculator.Calculator) {
-	operations := operationsMap{}
+func init() {
 	RegisterHandler(&operations)
-	fmt.Println(operations.ExecuteQuery(expression, calculator))
+}
+
+func Handler(expression parser.Expression, calculator *calculator.Calculator) float64 {
+	return operations.ExecuteQuery(expression, calculator)
 }
 
 func HandleAddFunction(operand float64, calculator *calculator.Calculator) float64 {

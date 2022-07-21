@@ -14,7 +14,7 @@ lint:
 
 build:
 	mkdir -p out/
-	GO111MODULE=on go build -o $(APP_EXECUTABLE) ./cmd/
+	GO111MODULE=on go build -o $(APP_EXECUTABLE) ./pkg/
 
 test: build
 	mkdir -p coverage/

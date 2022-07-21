@@ -5,16 +5,18 @@ import (
 	"calculator-cli/pkg/handler"
 	"calculator-cli/pkg/parser"
 	"calculator-cli/pkg/reader"
-	"fmt"
+	"calculator-cli/pkg/renderer"
 	"os"
 )
 
 func main() {
 	newCalculator := calculator.NewCalculator()
 	for true {
-		fmt.Print("> ")
+		renderer.RenderInput(os.Stdout)
 		Input := reader.Reader(os.Stdin)
 		ParsedObject := parser.Parse(Input)
-		handler.Handler(ParsedObject, newCalculator)
+		answer := handler.Handler(ParsedObject, newCalculator)
+		renderer.RenderValue(os.Stdout, answer)
+		renderer.RenderNewLine(os.Stdout)
 	}
 }

@@ -2,6 +2,8 @@ package parser
 
 import (
 	"calculator-cli/pkg/constants"
+	"calculator-cli/pkg/renderer"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -25,7 +27,8 @@ func Parse(inputString string) Expression {
 func ConvertToFloat(operandString string) float64 {
 	operand, err := strconv.ParseFloat(operandString, 64)
 	if err != nil {
-		panic("Error: Wrong Operand")
+		renderer.RenderError(os.Stdout, "Error: Wrong Operand")
+		renderer.RenderNewLine(os.Stdout)
 	}
 	return operand
 }

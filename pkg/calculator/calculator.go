@@ -1,6 +1,9 @@
 package calculator
 
-import "os"
+import (
+	"calculator-cli/pkg/renderer"
+	"os"
+)
 
 type Calculator struct {
 	value float64
@@ -43,7 +46,8 @@ func (calculator *Calculator) Multiply(operand float64) float64 {
 
 func (calculator *Calculator) Divide(operand float64) float64 {
 	if operand == 0 {
-		panic("Zero division error")
+		renderer.RenderError(os.Stdout, "Zero division error")
+		renderer.RenderNewLine(os.Stdout)
 	}
 	calculator.value /= operand
 	return calculator.value
