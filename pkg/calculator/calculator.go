@@ -55,6 +55,6 @@ func (calculator *Calculator) Cancel(float64) float64 {
 }
 
 func (calculator *Calculator) Exit(float64) float64 {
-	defer func() { os.Exit(3) }()
+	defer func() { os.Exit(0) }()
 	return 0
 }

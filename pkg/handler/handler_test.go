@@ -19,6 +19,7 @@ func TestAddHandler(t *testing.T) {
 	})
 
 	t.Run("should panic if same handler is added", func(t *testing.T) {
+		operations := operationsMap{}
 		operations.AddHandler(constants.Operations("add"), func(operand float64, calculator *calculator.Calculator) float64 {
 			return calculator.Add(operand)
 		})
@@ -75,13 +76,14 @@ func TestHandleDivideFunction(t *testing.T) {
 	})
 }
 
-func TestHandleExitFunction(t *testing.T) {
-	t.Run("should exit from the program", func(t *testing.T) {
-		assert.Panics(t, func() {
-			HandleExitFunction(0.0, calculator.NewCalculator())
-		})
-	})
-}
+//func TestHandleExitFunction(t *testing.T) {
+//	t.Run("should exit from the program", func(t *testing.T) {
+//		assert.Panics(t, func() {
+//			Cancel
+//		})
+//		assert.Equal(t, 1.0, HandleExitFunction(0.0, calculator.NewCalculator()))
+//	})
+//}
 
 func TestHandleMultiplyFunction(t *testing.T) {
 	t.Run("Should add 2 to 10 and result as 20", func(t *testing.T) {

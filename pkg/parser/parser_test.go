@@ -19,7 +19,7 @@ func TestParser(t *testing.T) {
 
 	t.Run("should parse the 'subtract 5' as operator-subtract and operand-5.0", func(t *testing.T) {
 		parser := Parse("subtract 5")
-		assert.Equal(t, "subtract", parser.Operator)
+		assert.Equal(t, constants.Operations("subtract"), parser.Operator)
 		assert.Equal(t, 5.0, parser.Operand)
 	})
 
@@ -47,7 +47,7 @@ func TestConvertToFloat(t *testing.T) {
 
 	t.Run("should panic if string cannot be converted to a float", func(t *testing.T) {
 		assert.Panics(t, func() {
-			Parse("abc")
+			ConvertToFloat("abc")
 		})
 	})
 }

@@ -7,7 +7,7 @@ import (
 
 func TestNewCalculator(t *testing.T) {
 	t.Run("should create a new calculator and return it", func(t *testing.T) {
-		assert.IsType(t, Calculator{}, NewCalculator())
+		assert.IsType(t, &Calculator{}, NewCalculator())
 	})
 
 	t.Run("should initialize calculator with inital zero value", func(t *testing.T) {
