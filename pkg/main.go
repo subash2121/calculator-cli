@@ -15,8 +15,7 @@ func main() {
 		renderer.RenderInput(os.Stdout)
 		Input := reader.Reader(os.Stdin)
 		ParsedObject := parser.Parse(Input)
-		answer := handler.Handler(ParsedObject, newCalculator)
-		renderer.RenderValue(os.Stdout, answer)
+		handler.Handler(ParsedObject, newCalculator)
 		renderer.RenderNewLine(os.Stdout)
 	}
 }

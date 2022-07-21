@@ -135,3 +135,11 @@ func TestCalculatorCancel(t *testing.T) {
 		assert.Equal(t, 0.0, calculator.Cancel(0))
 	})
 }
+
+func TestGetValue(t *testing.T) {
+	t.Run("should result the value 5 after adding 5", func(t *testing.T) {
+		calculator := NewCalculator()
+		calculator.Add(5)
+		assert.Equal(t, 5.0, calculator.GetValue())
+	})
+}

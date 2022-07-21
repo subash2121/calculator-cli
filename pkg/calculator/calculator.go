@@ -24,6 +24,7 @@ type CalculatorInterface interface {
 type UtilityInterface interface {
 	Cancel(float64) float64
 	Exit(float64) float64
+	GetValue() float64
 }
 
 func NewCalculator() *Calculator {
@@ -48,8 +49,9 @@ func (calculator *Calculator) Divide(operand float64) float64 {
 	if operand == 0 {
 		renderer.RenderError(os.Stdout, "Zero division error")
 		renderer.RenderNewLine(os.Stdout)
+	} else {
+		calculator.value /= operand
 	}
-	calculator.value /= operand
 	return calculator.value
 }
 
@@ -61,4 +63,8 @@ func (calculator *Calculator) Cancel(float64) float64 {
 func (calculator *Calculator) Exit(float64) float64 {
 	defer func() { os.Exit(0) }()
 	return 0
+}
+
+func (calculator *Calculator) GetValue() float64 {
+	return calculator.value
 }
